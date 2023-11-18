@@ -1,0 +1,14 @@
+Resources:
+  GlueJob:
+    Type: AWS::Glue::Job
+    Properties:
+      Name: MyGlueJob  
+      Role: AWSGlueServiceRole-crawler
+      Command:
+        Name: glueetl
+        ScriptLocation: s3://mycloudformationbuckets/script/glue_script.py
+      DefaultArguments:
+        "--TempDir": "s3://mycloudformationbuckets/temp/"
+      GlueVersion: "4.0"
+      WorkerType: G.1X
+      NumberOfWorkers: 2
